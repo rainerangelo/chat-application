@@ -1,7 +1,7 @@
 // Turn off logging
 // console.log = function() {}
 
-const max_number_of_users = 5;
+const MAX_NUMBER_OF_USERS = 5;
 
 var app = require('express')();
 var http = require('http').createServer(app);
@@ -25,6 +25,7 @@ class Message {
     constructor(text, user) {
         this.text = text;
         this.user = user;
+        this.timestamp = new Date();
     }
 }
 

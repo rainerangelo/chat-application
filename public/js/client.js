@@ -1,6 +1,8 @@
 // Turn off logging
 // console.log = function() {}
 
+const NUMBER_OF_MILLISECONDS_IN_AN_HOUR = 1000 * 60 * 60;
+
 function get_stored_user_id() {
     return localStorage.getItem('user_id');
 }
@@ -42,7 +44,19 @@ $(function () {
         }
 
         for (let i = 0; i < status.messages.length; i++) {
-            $('#messages').append($('<li>').text(status.messages[i].user.id + ": " + status.messages[i].text));
+            let timestamp = new Date(status.messages[i].timestamp);
+            let difference_in_hours = Math.abs(new Date() - timestamp) / NUMBER_OF_MILLISECONDS_IN_AN_HOUR;
+
+            if (difference_in_hours < 24) {
+                timestamp = timestamp.toLocaleTimeString('en-US', { hour: "numeric", minute: "numeric" });
+            }
+            else {
+                timestamp = timestamp.toLocaleDateString('en-US', { year: "numeric", month: "numeric", day: 'numeric' });
+            }
+
+            let message_html = `<li><p>` + status.messages[i].user.id + ` <span class='timestamp'>` + timestamp + `</span></p><p>` + status.messages[i].text + `</p></li>`;
+
+            $('#messages').append($(message_html));
         }
     });
 });
