@@ -1,3 +1,6 @@
+// Turn off logging
+// console.log = function() {}
+
 function get_stored_user_id() {
     return localStorage.getItem('user_id');
 }

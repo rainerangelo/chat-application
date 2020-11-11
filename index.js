@@ -1,3 +1,6 @@
+// Turn off logging
+// console.log = function() {}
+
 const max_number_of_users = 5;
 
 var app = require('express')();
