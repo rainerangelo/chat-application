@@ -33,7 +33,7 @@
 body {
     background-color: #181717;
     color: white;
-    font-family: 'Circular Std Medium';
+    font-family: 'Circular Std Book';
 }
 
 h1 {
@@ -53,13 +53,23 @@ p {
 }
 
 form {
-
+    padding: 0 4em;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 form input {
+    background-color: #262626;
     border: 0;
+    color: white;
     height: 100%;
+    padding: 0 1em;
     width: 100%;
+}
+
+form input:focus {
+    outline: none;
 }
 
 form button {
@@ -70,10 +80,10 @@ form button {
 /* Classes */
 
 .navbar {
-    padding: 2.5em;
-    position: fixed;
-    width: 100%;
-    z-index: 1;
+    padding: 0 4em;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .grid-container {
@@ -90,7 +100,6 @@ form button {
 
 .timestamp {
     color: #808080;
-    font-family: 'Circular Std Book';
     font-size: 0.8em;
 }
 
@@ -114,20 +123,41 @@ form button {
 }
 
 #grid-item-form {
-    /* background-color: darkorange; */
     grid-column: 1 / span 5;
 }
 
 #messages {
     list-style-type: none;
+    padding: 0 4em;
 }
 
 #messages li {
-    padding: 0.5em 1em;
+    /* padding: 0.5em 1em; */
 }
 
 #users {
     list-style-type: none;
+}
+
+/* Custom Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #262626;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: white;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: white;
 }
 
 /* Extra small devices (phones, 600px and down) */

@@ -52,7 +52,7 @@ $(function () {
             let difference_in_hours = Math.abs(new Date() - timestamp) / NUMBER_OF_MILLISECONDS_IN_AN_HOUR;
 
             if (difference_in_hours < 24) {
-                timestamp = timestamp.toLocaleTimeString('en-US', { hour: "numeric", minute: "numeric" });
+                timestamp = 'Today at ' + timestamp.toLocaleTimeString('en-US', { hour: "numeric", minute: "numeric" });
             }
             else {
                 timestamp = timestamp.toLocaleDateString('en-US', { year: "numeric", month: "numeric", day: 'numeric' });
