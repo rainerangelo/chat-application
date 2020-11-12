@@ -70,12 +70,7 @@ $(function () {
 
             let message_html = '';
 
-            if (status.messages[i].user.id === get_stored_user_id()) {
-                message_html = `<li class="message-main-user"><p><span class="highlight-main-user">` + status.messages[i].user.username + ` (You) </span><span class="timestamp">` + timestamp + `</span></p><p>` + status.messages[i].text + `</p></li>`;
-            }
-            else {
-                message_html = `<li><p>` + status.messages[i].user.username + ` <span class="timestamp">` + timestamp + `</span></p><p>` + status.messages[i].text + `</p></li>`;
-            }
+            message_html = `<li><p><span style="color: ${status.users[i].color}">${status.users[i].username}</span><span class="timestamp">${timestamp}</span></p><p>${status.messages[i].text}</p></li>`;
 
             $('#messages').append($(message_html));
         }
@@ -87,12 +82,7 @@ $(function () {
 
             let user_html = '';
 
-            if (status.users[i].id === get_stored_user_id()) {
-                user_html = `<li><p><span class="highlight-main-user">` + status.users[i].username + ` (You)</span></p></li>`;
-            }
-            else {
-                user_html = `<li><p>` + status.users[i].username + `</p></li>`;
-            }
+            user_html = `<li><p><span style="color: ${status.users[i].color}">${status.users[i].username}</span></p></li>`;
 
             $('#users').append($(user_html));
         }

@@ -107,8 +107,7 @@ io.on('connection', (socket) => {
         var user = status.users.find(user => user.socket_id === socket.id);
 
         if (user) {
-            user.color = color;
-            console.log(user);
+            user.color = '#' + color;
         }
 
         render();
