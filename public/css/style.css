@@ -98,6 +98,11 @@ form button {
 
 }
 
+.sub-title {
+    padding-bottom: 0.5em;
+    padding-left: 40px;
+}
+
 .timestamp {
     color: #808080;
     font-size: 0.8em;
@@ -134,10 +139,6 @@ form button {
 #messages {
     list-style-type: none;
     padding: 0 4em;
-}
-
-#messages li {
-
 }
 
 #users {

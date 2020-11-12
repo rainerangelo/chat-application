@@ -88,10 +88,14 @@ $(function () {
             $('#messages').append(message_item);
         }
 
+        let number_of_online_users = 0;
+
         for (let i = 0; i < status.users.length; i++) {
             if (!status.users[i].active) {
                 continue;
             }
+
+            number_of_online_users++;
 
             let user_item = $(`<li></li>`);
             let user_item_username = $(`<p></p>`);
@@ -106,6 +110,9 @@ $(function () {
 
             $('#users').append(user_item);
         }
+
+        $('#number-of-online-users').empty();
+        $('#number-of-online-users').append(` (${number_of_online_users}/${status.users.length})`);
 
         if (auto_scroll) {
             scroll_to_bottom(messages);
