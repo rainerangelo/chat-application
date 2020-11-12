@@ -25,6 +25,18 @@ function generate_user_id() {
     return user_id;
 }
 
+function sort_users() {
+    status.users.sort((first, second) => {
+        if (first.username < second.username) {
+            return -1;
+        }
+        if (first.username > second.username) {
+            return 1;
+        }
+        return 0;
+    })
+}
+
 function render() {
     io.emit('render', status);
 }
@@ -57,6 +69,7 @@ io.on('connection', (socket) => {
     socket.on('new user', () => {
         var user = new User(socket.id);
         status.users.push(user);
+        sort_users();
 
         socket.emit('new user', user);
 
@@ -73,6 +86,7 @@ io.on('connection', (socket) => {
         else {
             var user = new User(socket.id);
             status.users.push(user);
+            sort_users();
 
             socket.emit('new user', user);
         }
@@ -99,6 +113,8 @@ io.on('connection', (socket) => {
                 user.username = name;
             }
         }
+
+        sort_users()
 
         render();
     });
