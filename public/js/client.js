@@ -13,9 +13,11 @@ function scroll_to_bottom(messages) {
 
 $(function () {
     var socket = io();
+    var stored_id = get_stored_user_id();
 
-    if (get_stored_user_id()) {
+    if (stored_id) {
         console.log("Found stored user ID in local storage");
+        socket.emit('previous user', stored_id);
     }
     else {
         console.log("Did not find stored user ID in local storage");
@@ -52,7 +54,7 @@ $(function () {
             let difference_in_hours = Math.abs(new Date() - timestamp) / NUMBER_OF_MILLISECONDS_IN_AN_HOUR;
 
             if (difference_in_hours < 24) {
-                timestamp = 'Today at ' + timestamp.toLocaleTimeString('en-US', { hour: "numeric", minute: "numeric" });
+                timestamp = timestamp.toLocaleTimeString('en-US', { hour: "numeric", minute: "numeric" });
             }
             else {
                 timestamp = timestamp.toLocaleDateString('en-US', { year: "numeric", month: "numeric", day: 'numeric' });
@@ -64,7 +66,9 @@ $(function () {
         }
 
         for (let i = 0; i < status.users.length; i++) {
-            $('#users').append($('<li>').text(status.users[i].username));
+            if (status.users[i].active) {
+                $('#users').append($('<li>').text(status.users[i].username));
+            }
         }
 
         if (auto_scroll) {

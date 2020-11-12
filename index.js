@@ -2,7 +2,7 @@
 // console.log = function() {}
 
 const MAX_NUMBER_OF_USERS = 5;
-const USERNAME_LENGTH = 8;
+const USERNAME_LENGTH = 4;
 const HEX = '0123456789ABCDEF';
 
 var app = require('express')();
@@ -26,7 +26,8 @@ function generate_user_id() {
 }
 
 class User {
-    constructor() {
+    constructor(socket_id) {
+        this.socket_id = socket_id;
         this.id = generate_user_id();
         this.username = 'User ' + this.id;
         this.active = true;
@@ -49,26 +50,54 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('new user', () => {
-        var user = new User();
+        var user = new User(socket.id);
         status.users.push(user);
 
         socket.emit('new user', user);
     });
 
+    socket.on('previous user', (stored_id) => {
+        var user = status.users.find(user => user.id === stored_id);
+
+        if (user) {
+            user.socket_id = socket.id;
+            user.active = true;
+        }
+        else {
+            var user = new User(socket.id);
+            status.users.push(user);
+
+            socket.emit('new user', user);
+        }
+
+        io.emit('render', status);
+    });
+
     socket.on('chat message', (data) => {
         var user = status.users.find(user => user.id === data.id);
-        var message = new Message(data.message, user);
-        status.messages.push(message);
+
+        if (user) {
+            var message = new Message(data.message, user);
+            status.messages.push(message);
+        }
 
         io.emit('render', status);
     });
 
     socket.on('render', () => {
+        var user = status.users.find(user => user.socket_id === socket.id);
+
         io.emit('render', status);
     });
 
     socket.on('disconnect', () => {
-        
+        var user = status.users.find(user => user.socket_id === socket.id);
+
+        if (user) {
+            user.active = false;
+        }
+
+        io.emit('render', status);
     });
 });
 
