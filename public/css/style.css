@@ -109,7 +109,7 @@ form button {
 }
 
 .highlight-main-user {
-    color: #16CA76;
+    /* color: #16CA76; */
 }
 
 /* IDs */
@@ -141,7 +141,7 @@ form button {
 }
 
 #messages li {
-    /* padding: 0.5em 1em; */
+
 }
 
 #users {

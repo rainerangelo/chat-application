@@ -34,6 +34,7 @@ class User {
         this.socket_id = socket_id;
         this.id = generate_user_id();
         this.username = 'User ' + this.id;
+        this.color = 'white';
         this.active = true;
     }
 }
@@ -90,9 +91,30 @@ io.on('connection', (socket) => {
         render();
     });
 
-    socket.on('render', () => {
+    socket.on('update name', (name) => {
         var user = status.users.find(user => user.socket_id === socket.id);
 
+        if (user) {
+            if (!status.users.some(user => user.username === name)) {
+                user.username = name;
+            }
+        }
+
+        render();
+    });
+
+    socket.on('update color', (color) => {
+        var user = status.users.find(user => user.socket_id === socket.id);
+
+        if (user) {
+            user.color = color;
+            console.log(user);
+        }
+
+        render();
+    });
+
+    socket.on('render', () => {
         render();
     });
 

@@ -26,7 +26,18 @@ $(function () {
 
     $('form').submit(function (e) {
         e.preventDefault();
-        socket.emit('chat message', { message: $('#message').val(), id: get_stored_user_id() });
+        let received_message = $('#message').val();
+
+        if (received_message.startsWith('/name ')) {
+            socket.emit('update name', received_message.split('/name ')[1]);
+        }
+        else if (received_message.startsWith('/color ')) {
+            socket.emit('update color', received_message.split('/color ')[1]);
+        }
+        else {
+            socket.emit('chat message', { message: received_message, id: get_stored_user_id() });
+        }
+
         $('#message').val('');
         return false;
     })
