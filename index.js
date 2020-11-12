@@ -1,6 +1,7 @@
 // Turn off logging
 // console.log = function() {}
 
+const MAX_NUMBER_OF_MESSAGES = 200;
 const MAX_NUMBER_OF_USERS = 5;
 const USERNAME_LENGTH = 4;
 const HEX = '0123456789ABCDEF';
@@ -100,6 +101,10 @@ io.on('connection', (socket) => {
         if (user) {
             var message = new Message(data.message, user);
             status.messages.push(message);
+
+            if (status.messages.length > MAX_NUMBER_OF_MESSAGES) {
+                status.messages.shift();
+            }
         }
 
         render();
