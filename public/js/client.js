@@ -7,6 +7,10 @@ function get_stored_user_id() {
     return localStorage.getItem('user_id');
 }
 
+function scroll_to_bottom(messages) {
+    messages.scrollTop = messages.scrollHeight;
+}
+
 $(function () {
     var socket = io();
 
@@ -36,12 +40,12 @@ $(function () {
     socket.on('render', (status) => {
         console.log("In render");
 
-        $('#participants').empty();
-        $('#messages').empty();
+        var messages = document.getElementById('grid-item-messages');
 
-        for (let i = 0; i < status.users.length; i++) {
-            $('#participants').append($('<li>').text(status.users[i].id));
-        }
+        auto_scroll = messages.scrollTop + messages.clientHeight >= messages.scrollHeight;
+
+        $('#messages').empty();
+        $('#users').empty();
 
         for (let i = 0; i < status.messages.length; i++) {
             let timestamp = new Date(status.messages[i].timestamp);
@@ -54,9 +58,17 @@ $(function () {
                 timestamp = timestamp.toLocaleDateString('en-US', { year: "numeric", month: "numeric", day: 'numeric' });
             }
 
-            let message_html = `<li><p>` + status.messages[i].user.id + ` <span class='timestamp'>` + timestamp + `</span></p><p>` + status.messages[i].text + `</p></li>`;
+            let message_html = `<li><p>` + status.messages[i].user.username + ` <span class='timestamp'>` + timestamp + `</span></p><p>` + status.messages[i].text + `</p></li>`;
 
             $('#messages').append($(message_html));
+        }
+
+        for (let i = 0; i < status.users.length; i++) {
+            $('#users').append($('<li>').text(status.users[i].username));
+        }
+
+        if (auto_scroll) {
+            scroll_to_bottom(messages);
         }
     });
 });

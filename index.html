@@ -15,26 +15,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Header -->
-    <nav class="navbar navbar-light">
-        <a class="navbar-brand" href="index.html">
-            Chat by Rainer
-        </a>
-    </nav>
-    <!-- Content -->
-    <div class="container div-main">
-        <div class="row">
-            <div class="col-sm-10">
-                <h2>Messages</h2>
-                <ul id="messages"></ul>
-                <form action="">
-                    <input id="message" autocomplete="off"/><button>Send</button>
-                </form>
-            </div>
-            <div class="col-sm-2">
-                <h2>Participants</h2>
-                <ul id="participants"></ul>
-            </div>
+    <div class="grid-container">
+        <!-- Header -->
+        <div id="grid-item-navbar" class="grid-item">
+            <nav class="navbar navbar-dark">
+                <h1>Chat by Rainer</h1>
+            </nav>
+        </div>
+        <!-- Content -->
+        <div id="grid-item-messages" class="grid-item">
+            <ul id="messages"></ul>
+        </div>
+        <div id="grid-item-users" class="grid-item">
+            <ul id="users"></ul>
+        </div>
+        <div id="grid-item-form" class="grid-item">
+            <form action="">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <input id="message" autocomplete="off"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-outline-light">Send</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <!-- Chat Logic -->

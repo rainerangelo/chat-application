@@ -29,13 +29,10 @@
 }
 
 /* Elements */
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} */
 
 body {
+    background-color: #181717;
+    color: white;
     font-family: 'Circular Std Medium';
 }
 
@@ -52,30 +49,22 @@ h2 {
 }
 
 p {
-    line-height: normal;
-    margin: 0;
+
 }
 
 form {
-    background: #000;
-    padding: 3px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+
 }
 
 form input {
     border: 0;
-    padding: 10px;
-    width: 90%;
-    margin-right: 0.5%;
+    height: 100%;
+    width: 100%;
 }
 
 form button {
-    width: 9%;
-    background: rgb(130, 224, 255);
-    border: none;
-    padding: 10px;
+    height: 100%;
+    width: 100%;
 }
 
 /* Classes */
@@ -87,46 +76,58 @@ form button {
     z-index: 1;
 }
 
-.div-main {
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(10, 1fr);
     height: 100vh;
-    max-width: 100%;
-    padding-top: 7.5em;
+    width: 100vw;
 }
 
-.div-centered {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
+.grid-item {
 
-.div-h-centered {
-    text-align: center;
 }
 
 .timestamp {
     color: #808080;
+    font-family: 'Circular Std Book';
     font-size: 0.8em;
 }
 
 /* IDs */
+#grid-item-navbar {
+    grid-column: 1 / span 6;
+}
+
+#grid-item-messages {
+    /* background-color: darkblue; */
+    grid-column: 1 / span 5;
+    grid-row: 2 / span 8;
+    overflow-y: auto;
+}
+
+#grid-item-users {
+    /* background-color: darkred; */
+    grid-column: 6 / span 1;
+    grid-row: 2 / span 8;
+    overflow-y: auto;
+}
+
+#grid-item-form {
+    /* background-color: darkorange; */
+    grid-column: 1 / span 5;
+}
+
 #messages {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 }
 
 #messages li {
     padding: 0.5em 1em;
 }
 
-#messages li:nth-child(odd) {
-    background: #eee;
-}
-
-#participants {
+#users {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 }
 
 /* Extra small devices (phones, 600px and down) */
