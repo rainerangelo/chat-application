@@ -37,7 +37,7 @@ body {
 }
 
 h1 {
-    color: #FEA634;
+    color: #16CA76;
     font-family: 'Circular Std Black';
     font-size: 2.5em;
 }
@@ -106,10 +106,6 @@ form button {
 
 .message-main-user {
     text-align: right;
-}
-
-.highlight-main-user {
-    /* color: #16CA76; */
 }
 
 /* IDs */

@@ -28,14 +28,16 @@ $(function () {
         e.preventDefault();
         let received_message = $('#message').val();
 
-        if (received_message.startsWith('/name ')) {
-            socket.emit('update name', received_message.split('/name ')[1]);
-        }
-        else if (received_message.startsWith('/color ')) {
-            socket.emit('update color', received_message.split('/color ')[1]);
-        }
-        else {
-            socket.emit('chat message', { message: received_message, id: get_stored_user_id() });
+        if (received_message.trim().length) {
+            if (received_message.startsWith('/name ')) {
+                socket.emit('update name', received_message.split('/name ')[1]);
+            }
+            else if (received_message.startsWith('/color ')) {
+                socket.emit('update color', received_message.split('/color ')[1]);
+            }
+            else {
+                socket.emit('chat message', { message: received_message, id: get_stored_user_id() });
+            }
         }
 
         $('#message').val('');
@@ -68,11 +70,22 @@ $(function () {
                 timestamp = timestamp.toLocaleDateString('en-US', { year: "numeric", month: "numeric", day: 'numeric' });
             }
 
-            let message_html = '';
+            let message_item = $(`<li></li>`);
+            let message_item_username = $(`<p></p>`);
+            let message_item_message = $(`<p></p>`);
 
-            message_html = `<li><p><span style="color: ${status.users[i].color}">${status.users[i].username}</span><span class="timestamp">${timestamp}</span></p><p>${status.messages[i].text}</p></li>`;
+            message_item_username.append(`<span style="color: ${status.messages[i].user.color}">${status.messages[i].user.username}</span><span class="timestamp">${timestamp}</span>`);
+            message_item_message.append(status.messages[i].text);
 
-            $('#messages').append($(message_html));
+            if (status.messages[i].user.id === get_stored_user_id()) {
+                message_item_username.children('span')[0].append(' (You)');
+                message_item.addClass('message-main-user');
+            }
+
+            message_item.append(message_item_username);
+            message_item.append(message_item_message);
+
+            $('#messages').append(message_item);
         }
 
         for (let i = 0; i < status.users.length; i++) {
@@ -80,11 +93,18 @@ $(function () {
                 continue;
             }
 
-            let user_html = '';
+            let user_item = $(`<li></li>`);
+            let user_item_username = $(`<p></p>`);
 
-            user_html = `<li><p><span style="color: ${status.users[i].color}">${status.users[i].username}</span></p></li>`;
+            user_item_username.append(`<span style="color: ${status.users[i].color}">${status.users[i].username}</span>`);
 
-            $('#users').append($(user_html));
+            if (status.users[i].id === get_stored_user_id()) {
+                user_item_username.children('span')[0].append(' (You)');
+            }
+
+            user_item.append(user_item_username);
+
+            $('#users').append(user_item);
         }
 
         if (auto_scroll) {
