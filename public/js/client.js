@@ -36,6 +36,9 @@ $(function () {
                 socket.emit('update color', received_message.split('/color ')[1]);
             }
             else {
+                received_message = received_message.replace(':)', '&#128578;');
+                received_message = received_message.replace(':(', '&#128577;');
+                received_message = received_message.replace(':o', '&#128558;');
                 socket.emit('chat message', { message: received_message, id: get_stored_user_id() });
             }
         }
