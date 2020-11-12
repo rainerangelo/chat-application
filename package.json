@@ -9,5 +9,9 @@
     },
     "scripts": {
         "start": "node index.js"
+    },
+    "author": "rainer-lim",
+    "engines": {
+        "node": "14.x"
     }
 }
