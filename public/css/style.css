@@ -125,19 +125,18 @@ form button {
 }
 
 /* IDs */
+
 #grid-item-navbar {
     grid-column: 1 / span 6;
 }
 
 #grid-item-messages {
-    /* background-color: darkblue; */
     grid-column: 1 / span 5;
     grid-row: 2 / span 8;
     overflow-y: auto;
 }
 
 #grid-item-users {
-    /* background-color: darkred; */
     grid-column: 6 / span 1;
     grid-row: 2 / span 8;
     overflow-y: auto;
@@ -157,6 +156,7 @@ form button {
 }
 
 /* Custom Scrollbar */
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -177,7 +177,70 @@ form button {
     background: white;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+/* Media Queries */
 
+@media only screen and (max-width: 768px) {
+    form {
+        display: block;
+        padding: 0 1em;
+        position: static;
+        top: 0%;
+        transform: translateY(50%);
+    }
+
+    button {
+        margin-top: 1em;
+    }
+
+    .navbar {
+        display: block;
+        padding: 0;
+        position: static;
+        text-align: center;
+        top: 0%;
+        transform: translateY(50%);
+    }
+
+    .sub-title {
+        padding: 0 16px;
+    }
+
+    #grid-item-navbar {
+        grid-column: 1 / span 6;
+    }
+
+    #grid-item-messages {
+        grid-column: 1 / span 4;
+        grid-row: 2 / span 7;
+        overflow-y: auto;
+    }
+
+    #grid-item-users {
+        grid-column: 5 / span 2;
+        grid-row: 2 / span 7;
+        overflow-y: auto;
+    }
+
+    #grid-item-form {
+        grid-column: 1 / span 6;
+        grid-row: 9 / span 2;
+    }
+
+    #messages {
+        padding: 0 1em;
+    }
+
+    #users {
+        padding: 0 1em;
+    }
+}
+
+@media only screen and (max-height: 800px) {
+    body {
+        font-size: 0.75em;
+    }
+
+    button {
+        margin-top: 0.5em;
+    }
 }
