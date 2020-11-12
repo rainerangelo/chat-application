@@ -75,7 +75,7 @@ $(function () {
 
             let message_item = $(`<li></li>`);
             let message_item_username = $(`<p></p>`);
-            let message_item_message = $(`<p></p>`);
+            let message_item_message = $(`<p class="message-text"></p>`);
 
             message_item_username.append(`<span style="color: ${status.messages[i].user.color}">${status.messages[i].user.username}</span><span class="timestamp">${timestamp}</span>`);
             message_item_message.append(status.messages[i].text);
@@ -83,6 +83,7 @@ $(function () {
             if (status.messages[i].user.id === get_stored_user_id()) {
                 message_item_username.children('span')[0].append(' (You)');
                 message_item.addClass('message-main-user');
+                message_item_message.addClass('message-text-main-user');
             }
 
             message_item.append(message_item_username);

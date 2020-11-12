@@ -43,7 +43,7 @@ h1 {
 }
 
 h2 {
-    color: #ff5656;
+    color: #16CA76;
     font-family: 'Circular Std Black';
     font-size: 1.5em;
 }
@@ -111,6 +111,16 @@ form button {
 
 .message-main-user {
     text-align: right;
+}
+
+.message-text {
+    background-color: #262626;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.message-text-main-user {
+    background-color: #1982FC;
 }
 
 /* IDs */
