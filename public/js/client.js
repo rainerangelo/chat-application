@@ -24,10 +24,7 @@ $(function () {
         socket.emit('new user');
     }
 
-    socket.emit('render');
-
     $('form').submit(function (e) {
-        console.log("In submit, message is " + $('#message').val() + " from " + get_stored_user_id());
         e.preventDefault();
         socket.emit('chat message', { message: $('#message').val(), id: get_stored_user_id() });
         $('#message').val('');
@@ -60,15 +57,33 @@ $(function () {
                 timestamp = timestamp.toLocaleDateString('en-US', { year: "numeric", month: "numeric", day: 'numeric' });
             }
 
-            let message_html = `<li><p>` + status.messages[i].user.username + ` <span class='timestamp'>` + timestamp + `</span></p><p>` + status.messages[i].text + `</p></li>`;
+            let message_html = '';
+
+            if (status.messages[i].user.id === get_stored_user_id()) {
+                message_html = `<li class="message-main-user"><p><span class="highlight-main-user">` + status.messages[i].user.username + ` (You) </span><span class="timestamp">` + timestamp + `</span></p><p>` + status.messages[i].text + `</p></li>`;
+            }
+            else {
+                message_html = `<li><p>` + status.messages[i].user.username + ` <span class="timestamp">` + timestamp + `</span></p><p>` + status.messages[i].text + `</p></li>`;
+            }
 
             $('#messages').append($(message_html));
         }
 
         for (let i = 0; i < status.users.length; i++) {
-            if (status.users[i].active) {
-                $('#users').append($('<li>').text(status.users[i].username));
+            if (!status.users[i].active) {
+                continue;
             }
+
+            let user_html = '';
+
+            if (status.users[i].id === get_stored_user_id()) {
+                user_html = `<li><p><span class="highlight-main-user">` + status.users[i].username + ` (You)</span></p></li>`;
+            }
+            else {
+                user_html = `<li><p>` + status.users[i].username + `</p></li>`;
+            }
+
+            $('#users').append($(user_html));
         }
 
         if (auto_scroll) {

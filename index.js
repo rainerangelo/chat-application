@@ -25,6 +25,10 @@ function generate_user_id() {
     return user_id;
 }
 
+function render() {
+    io.emit('render', status);
+}
+
 class User {
     constructor(socket_id) {
         this.socket_id = socket_id;
@@ -54,6 +58,8 @@ io.on('connection', (socket) => {
         status.users.push(user);
 
         socket.emit('new user', user);
+
+        render();
     });
 
     socket.on('previous user', (stored_id) => {
@@ -70,7 +76,7 @@ io.on('connection', (socket) => {
             socket.emit('new user', user);
         }
 
-        io.emit('render', status);
+        render();
     });
 
     socket.on('chat message', (data) => {
@@ -81,13 +87,13 @@ io.on('connection', (socket) => {
             status.messages.push(message);
         }
 
-        io.emit('render', status);
+        render();
     });
 
     socket.on('render', () => {
         var user = status.users.find(user => user.socket_id === socket.id);
 
-        io.emit('render', status);
+        render();
     });
 
     socket.on('disconnect', () => {
@@ -97,7 +103,7 @@ io.on('connection', (socket) => {
             user.active = false;
         }
 
-        io.emit('render', status);
+        render();
     });
 });
 
