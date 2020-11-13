@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat by Rainer</title>
+
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="css/animate.css"> -->
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
 
     <!-- JS, Popper.js, and jQuery -->
@@ -16,38 +16,56 @@
 </head>
 <body>
     <div class="grid-container">
+
         <!-- Header -->
         <div id="grid-item-navbar" class="grid-item div-centered">
             <nav class="navbar navbar-dark">
                 <h1>Chat by Rainer</h1>
             </nav>
         </div>
+
         <!-- Content -->
+
+        <!-- List of Messages -->
         <div id="grid-item-messages" class="grid-item">
             <ul id="messages"></ul>
         </div>
+
+        <!-- List of Users -->
         <div id="grid-item-users" class="grid-item">
             <h2 class="sub-title">Online<span id="number-of-online-users"></span></h2>
             <ul id="users"></ul>
         </div>
+
+        <!-- Message Input -->
         <div id="grid-item-form" class="grid-item div-centered">
             <form id="message-form" action="">
                 <input id="message" autocomplete="off" placeholder="Message"/>
             </form>
         </div>
+
+        <!-- Send Message Button -->
         <div id="grid-item-send" class="grid-item div-centered">
             <button class="btn btn-outline-light" form="message-form">Send</button>
         </div>
+
+        <!-- Info Button -->
         <div id="grid-item-info" class="grid-item div-centered">
             <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal">Info</button>
         </div>
     </div>
+
+    <!-- Info -->
     <div class='modal fade' id='modal' tabindex='-1' data-backdrop='static' data-keyboard='false'>
         <div class='modal-dialog modal-dialog-centered'>
             <div class="modal-content">
                 <div class="modal-body">
+
+                    <!-- Username Customization Instruction -->
                     <p>Type <span class="command">/name &lt;username&gt;</span> to change username</p>
                     <p>&emsp;e.g., <span class="command">/name Rainer</span></p>
+
+                    <!-- Username Color Customization Instruction -->
                     <p>Type <span class="command">/color &lt;RRGGBB&gt;</span> to change username color</p>
                     <p>&emsp;e.g., <span class="command">/color FEA634</span></p>
                 </div>
@@ -57,6 +75,7 @@
             </div>
         </div>
     </div>
+
     <!-- Chat Logic -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/client.js"></script>

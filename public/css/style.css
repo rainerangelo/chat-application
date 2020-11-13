@@ -212,6 +212,9 @@ form input:focus {
 /* Media Queries */
 
 @media only screen and (max-width: 768px) {
+
+    /* Elements */
+
     body {
         font-size: 0.7em;
     }
@@ -220,6 +223,8 @@ form input:focus {
         padding: 0 1em;
     }
 
+    /* Classes */
+
     .grid-container button {
         margin: 0 1em;
     }
@@ -227,6 +232,8 @@ form input:focus {
     .sub-title {
         padding: 0 12px 20px 12px;
     }
+
+    /* IDs */
 
     #grid-item-messages {
         grid-row: 2 / span 7;
