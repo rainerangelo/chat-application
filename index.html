@@ -17,7 +17,7 @@
 <body>
     <div class="grid-container">
         <!-- Header -->
-        <div id="grid-item-navbar" class="grid-item">
+        <div id="grid-item-navbar" class="grid-item div-centered">
             <nav class="navbar navbar-dark">
                 <h1>Chat by Rainer</h1>
             </nav>
@@ -30,17 +30,31 @@
             <h2 class="sub-title">Online<span id="number-of-online-users"></span></h2>
             <ul id="users"></ul>
         </div>
-        <div id="grid-item-form" class="grid-item">
-            <form action="">
-                <div class="row">
-                    <div class="col-lg-10">
-                        <input id="message" autocomplete="off"/>
-                    </div>
-                    <div class="col-lg-2">
-                        <button class="btn btn-outline-light">Send</button>
-                    </div>
-                </div>
+        <div id="grid-item-form" class="grid-item div-centered">
+            <form id="message-form" action="">
+                <input id="message" autocomplete="off" placeholder="Message"/>
             </form>
+        </div>
+        <div id="grid-item-send" class="grid-item div-centered">
+            <button class="btn btn-outline-light" form="message-form">Send</button>
+        </div>
+        <div id="grid-item-info" class="grid-item div-centered">
+            <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal">Info</button>
+        </div>
+    </div>
+    <div class='modal fade' id='modal' tabindex='-1' data-backdrop='static' data-keyboard='false'>
+        <div class='modal-dialog modal-dialog-centered'>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Type <span class="command">/name &lt;username&gt;</span> to change username</p>
+                    <p>&emsp;e.g., <span class="command">/name Rainer</span></p>
+                    <p>Type <span class="command">/color &lt;RRGGBB&gt;</span> to change username color</p>
+                    <p>&emsp;e.g., <span class="command">/color FEA634</span></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-light" data-dismiss='modal'>Close</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Chat Logic -->

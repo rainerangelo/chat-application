@@ -40,31 +40,31 @@ h1 {
     color: #16CA76;
     font-family: 'Circular Std Black';
     font-size: 2.5em;
+    margin: 0;
 }
 
 h2 {
     color: #16CA76;
     font-family: 'Circular Std Black';
     font-size: 1.5em;
+    margin: 0;
 }
 
 p {
-
+    /* Empty */
 }
 
 form {
     padding: 0 4em;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 100%;
 }
 
 form input {
     background-color: #262626;
     border: 0;
     color: white;
-    height: 100%;
-    padding: 0 1em;
+    font-size: 18px;
+    padding: 0.5em 1em;
     width: 100%;
 }
 
@@ -72,18 +72,10 @@ form input:focus {
     outline: none;
 }
 
-form button {
-    height: 100%;
-    width: 100%;
-}
-
 /* Classes */
 
 .navbar {
-    padding: 0 4em;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    /* Empty */
 }
 
 .grid-container {
@@ -94,23 +86,29 @@ form button {
     width: 100vw;
 }
 
-.grid-item {
+.grid-container button {
+    margin: 0 4em;
+    width: 100%;
+}
 
+.grid-item {
+    /* Empty */
+}
+
+.div-centered {
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .sub-title {
-    padding-bottom: 0.5em;
-    padding-left: 40px;
+    padding: 0 64px 20px 64px;
 }
 
 .timestamp {
     color: #808080;
     font-size: 0.8em;
     padding-left: 1em;
-}
-
-.message-main-user {
-    text-align: right;
 }
 
 .message-text {
@@ -120,8 +118,33 @@ form button {
     padding: 1em;
 }
 
+.message-main-user {
+    text-align: right;
+}
+
 .message-text-main-user {
     background-color: #1982FC;
+}
+
+.modal-content {
+    background-color: #262626;
+    padding: 1em;
+}
+
+.modal-footer {
+    border: 0;
+}
+
+.modal.modal-static .modal-dialog {
+    transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -webkit-transform: none !important;
+}
+
+.command {
+    color: #16CA76;
+    padding: 0 0.5em;
 }
 
 /* IDs */
@@ -131,19 +154,27 @@ form button {
 }
 
 #grid-item-messages {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 4;
     grid-row: 2 / span 8;
     overflow-y: auto;
 }
 
 #grid-item-users {
-    grid-column: 6 / span 1;
+    grid-column: 5 / span 2;
     grid-row: 2 / span 8;
     overflow-y: auto;
 }
 
 #grid-item-form {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 4;
+}
+
+#grid-item-send {
+    grid-column: 5 / span 1;
+}
+
+#grid-item-info {
+    grid-column: 6 / span 1;
 }
 
 #messages {
@@ -153,6 +184,7 @@ form button {
 
 #users {
     list-style-type: none;
+    padding: 0 4em;
 }
 
 /* Custom Scrollbar */
@@ -181,58 +213,41 @@ form button {
 
 @media only screen and (max-width: 768px) {
     body {
-        font-size: 0.75em;
+        font-size: 0.7em;
     }
 
     form {
-        display: block;
         padding: 0 1em;
-        position: static;
-        top: 0%;
-        transform: translateY(50%);
     }
 
-    form input {
-        font-size: 16px;
-        padding: 0.5em 1em;
-    }
-
-    button {
-        margin-top: 1em;
-    }
-
-    .navbar {
-        display: block;
-        padding: 0;
-        position: static;
-        text-align: center;
-        top: 0%;
-        transform: translateY(50%);
+    .grid-container button {
+        margin: 0 1em;
     }
 
     .sub-title {
-        padding: 0 16px;
-    }
-
-    #grid-item-navbar {
-        grid-column: 1 / span 6;
+        padding: 0 12px 20px 12px;
     }
 
     #grid-item-messages {
-        grid-column: 1 / span 4;
-        grid-row: 2 / span 6;
+        grid-row: 2 / span 7;
         overflow-y: auto;
     }
 
     #grid-item-users {
-        grid-column: 5 / span 2;
-        grid-row: 2 / span 6;
+        grid-row: 2 / span 7;
         overflow-y: auto;
     }
 
     #grid-item-form {
         grid-column: 1 / span 6;
-        grid-row: 8 / span 3;
+    }
+
+    #grid-item-send {
+        grid-column: 1 / span 4;
+    }
+
+    #grid-item-info {
+        grid-column: 5 / span 2;
     }
 
     #messages {
